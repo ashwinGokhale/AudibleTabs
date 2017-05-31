@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React Chrome Extension Boilerplate
 
 [![Build Status](https://travis-ci.org/jhen0409/react-chrome-extension-boilerplate.svg?branch=master)](https://travis-ci.org/jhen0409/react-chrome-extension-boilerplate)
@@ -111,3 +112,6 @@ $ npm run test-e2e
 ## LICENSE
 
 [MIT](LICENSE)
+=======
+# React-Chrome-Extension
+>>>>>>> 33c991efaa3a6f89097152cd7d55a641ea47fa54
