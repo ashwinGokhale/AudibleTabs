@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # React Chrome Extension Boilerplate
 
 [![Build Status](https://travis-ci.org/jhen0409/react-chrome-extension-boilerplate.svg?branch=master)](https://travis-ci.org/jhen0409/react-chrome-extension-boilerplate)
@@ -22,13 +21,13 @@ The example is edited from [Redux](https://github.com/rackt/redux) TodoMVC examp
 
 #### Popup
 
-![Popup](https://cloud.githubusercontent.com/assets/3001525/14128490/dc05e9f8-f653-11e5-9de6-82d1de01844a.gif)
+![Popup]
 
 The `todos` state will be saved to `chrome.storage.local`.
 
 #### Window
 
-![Window](https://cloud.githubusercontent.com/assets/3001525/14128489/da176b62-f653-11e5-9bff-fefc35232358.gif)
+![Window]
 
 The context menu is created by [chrome/extension/background/contextMenus.js](chrome/extension/background/contextMenus.js).
 
@@ -112,6 +111,4 @@ $ npm run test-e2e
 ## LICENSE
 
 [MIT](LICENSE)
-=======
 # React-Chrome-Extension
->>>>>>> 33c991efaa3a6f89097152cd7d55a641ea47fa54
