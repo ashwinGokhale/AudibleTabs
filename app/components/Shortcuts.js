@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import '../styles/Shortcuts.css'
+//import '../styles/Shortcuts.css'
 
 export default class Shortcuts extends Component {
 
