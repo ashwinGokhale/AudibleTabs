@@ -1,33 +1,32 @@
-/**
- * Created by ashwin on 5/29/17.
- */
-
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchTabs } from '../actions/tabActions'
 import TabContent from './TabContent';
 
-export default class TabPage extends Component {
-    constructor(props){
-        super(props);
-        this.tabs = [];
+class TabPage extends Component {
+    constructor(props, context){
+        super(props, context);
     }
 
-    componentWillMount() {
-        this.tabs = this.getAllTabs();
+    componentDidMount() {
+        this.props.fetchTabs();
     }
 
     render() {
         return(
-            <TabContent tabs={this.tabs}/>
+            <TabContent tabs={this.props.tabs}/>
         )
     }
+}
 
-    getAllTabs(){
-        var temp = [];
-        chrome.tabs.query( {}, (tabs) => {
-            tabs.forEach((tab) => {
-                temp.push(tab);
-            });
-        });
-        return temp;
+TabPage.propTypes = {
+    tabs: React.PropTypes.array.isRequired,
+    fetchTabs: React.PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        tabs: state.tabs
     }
 }
+export default connect(mapStateToProps, { fetchTabs })(TabPage);

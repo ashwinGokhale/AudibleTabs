@@ -1,87 +1,24 @@
-import * as ActionTypes from '../constants/ActionTypes';
-
-const getAllTabs = () => {
-	var temp = [];
-	chrome.tabs.query( {}, (tabs) => {
-		tabs.forEach((tab) => {
-			temp.push(tab);
-		});
-	});
-	return temp;
-}
+import * as types from '../constants/ActionTypes';
 
 const initialState = [{
-  tabs:[],
-  fetched: false
+  tabs:[]
 }];
 
-const actionsMap = {
-	[ActionTypes.GET_TABS](state, action){
-		return {
-			tabs: getAllTabs(),
-			fetched: true
-		}
-	},
-	[ActionTypes.CLOSE_TAB](state, action){
-		chrome.tabs.remove(parseInt(action.id), () => {
-			return state.filter(tab => tab.index !== action.id);
-		});
-		
-	},
-	[ActionTypes.HIGHLIGHT_TAB](state, action){
-		chrome.tabs.highlight({'tabs': parseInt(e.target.id)}, () => {
-			return state;
-		});
-		
-	},
-	[ActionTypes.MUTE_TAB](state, action){
-		chrome.tabs.get(parseInt(action.id), (tab) => {
-            chrome.tabs.update(tab.id, {muted: !tab.mutedInfo.muted}, (tab) => {
-				return state;
-			});
-        });
-		
-	},
+export default function tabs(state = initialState, action = {}) {
+  switch (action.type) {
+    case types.GET_TABS:
+      return action.tabs;
 
-  [ActionTypes.ADD_TODO](state, action) {
-    return [{
-      id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-      completed: false,
-      text: action.text
-    }, ...state];
-  },
-  [ActionTypes.DELETE_TODO](state, action) {
-    return state.filter(todo =>
-      todo.id !== action.id
-    );
-  },
-  [ActionTypes.EDIT_TODO](state, action) {
-    return state.map(todo =>
-      (todo.id === action.id ?
-        Object.assign({}, todo, { text: action.text }) :
-        todo)
-    );
-  },
-  [ActionTypes.COMPLETE_TODO](state, action) {
-    return state.map(todo =>
-      (todo.id === action.id ?
-        Object.assign({}, todo, { completed: !todo.completed }) :
-        todo)
-    );
-  },
-  [ActionTypes.COMPLETE_ALL](state/*, action*/) {
-    const areAllCompleted = state.every(todo => todo.completed);
-    return state.map(todo => Object.assign({}, todo, {
-      completed: !areAllCompleted
-    }));
-  },
-  [ActionTypes.CLEAR_COMPLETED](state/*, action*/) {
-    return state.filter(todo => todo.completed === false);
+    case types.CLOSE_TAB:
+      return state.filter((tab) => {tab.id != action.id});
+    
+    case types.HIGHLIGHT_TAB:
+      return action.tabs;
+    
+    case types.MUTE_TAB:
+      return action.tabs;
+  
+    default:
+      return state;
   }
-};
-
-export default function tabs(state = initialState, action) {
-  const reduceFn = actionsMap[action.type];
-  if (!reduceFn) return state;
-  return reduceFn(state, action);
 }

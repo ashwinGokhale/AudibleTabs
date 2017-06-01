@@ -1,24 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import Root from '../../app/containers/Root';
 import App from '../../app/components/App';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from '../../app/reducers/index';import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import '../../app/styles/todoapp.css';
 
-chrome.storage.local.get('state', (obj) => {
-  // const { state } = obj;
-  // const initialState = JSON.parse(state || '{}');
-
-  // const createStore = require('../../app/store/configureStore');
-
-  
-
-  // ReactDOM.render(
-  //   <Root store={createStore(initialState)} />,
-  //   document.querySelector('#root')
-  // );
-});
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(thunk)
+  )
+);
 
 ReactDOM.render(
-    <App />,
-    document.querySelector('#root')
-  );
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector('#root')
+);
+

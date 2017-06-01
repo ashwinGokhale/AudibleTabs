@@ -1,34 +1,37 @@
-/**
- * Created by ashwin on 5/29/17.
- */
-
 import React, { Component } from 'react';
 import { Table, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { fetchTabs, closeTab, muteTab, highlightTab } from '../actions/tabActions'
 import '../styles/TabContent.css';
 
-export default class TabContent extends Component {
-    constructor(props) {
-        super(props);
+class TabContent extends Component {
+    constructor(props, context) {
+        super(props, context);
         this.handleMute.bind(this);
         this.handleClose.bind(this);
         this.handleHighlight.bind(this);
     }
 
-    handleMute(e){
+    handleMute = (e) => {
         e.preventDefault();
         chrome.tabs.get(parseInt(e.target.id), (tab) => {
             chrome.tabs.update(tab.id, {muted: !tab.mutedInfo.muted});
         });
     }
 
-    handleClose(e){
+    handleClose = (e) => {
         e.preventDefault();
-        chrome.tabs.remove(parseInt(e.target.id), () => {});
+        chrome.tabs.remove(parseInt(e.target.id), () => {
+            this.props.fetchTabs();
+        });
+        //this.props.closeTab(e.target.id);
+        //this.props.fetchTabs();
     }
 
-    handleHighlight(e){
+    handleHighlight = (e) => {
         e.preventDefault();
-        chrome.tabs.highlight({'tabs': parseInt(e.target.id)}, () => {});
+        //chrome.tabs.highlight({'tabs': parseInt(e.target.id)}, () => {});
+        this.props.highlightTab(e.target.id);
     }
 
     renderTable(){
@@ -43,12 +46,12 @@ export default class TabContent extends Component {
                     </tr>
                     </thead>
                     <tbody id="audible-table">
-                        {this.props.tabs.map(tab => 
-                            <tr key={tab.id}>
+                        {this.props.tabs.map((tab, i) => 
+                            (<tr key={i}>
                                 <td><Button onClick={this.handleClose} bsStyle="primary" id={tab.id}>Close</Button></td>
                                 <td><Button onClick={this.handleMute} bsStyle="primary" id={tab.id}>Mute</Button></td>
-                                <td><a onClick={this.handleHighlight} id ={tab.index}>{tab.title}</a></td>
-                            </tr>    
+                                <td><a onClick={this.handleHighlight} id={tab.index}>{tab.title}</a></td>
+                            </tr>)    
                         )}
                     </tbody>
                 </Table>
@@ -57,10 +60,25 @@ export default class TabContent extends Component {
     }
 
     render() {
+
         return(
             <div id="tabs" className="tab-pane fade in active">
-                {this.props.tabs ? this.renderTable() : <h4>There are currently no tabs playing audio</h4>}
+                {this.props.tabs.length ? this.renderTable() : <h4>There are currently no tabs playing audio</h4>}
             </div>
         )
     }
 }
+
+TabContent.propTypes = {
+    tabs: React.PropTypes.array.isRequired,
+    closeTab: React.PropTypes.func.isRequired,
+    muteTab: React.PropTypes.func.isRequired,
+    highlightTab: React.PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        tabs: state.tabs
+    }
+}
+export default connect(mapStateToProps, { fetchTabs, closeTab, muteTab, highlightTab })(TabContent);
