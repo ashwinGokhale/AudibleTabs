@@ -1,12 +1,4 @@
-# React Chrome Extension Boilerplate
-
-[![Build Status](https://travis-ci.org/jhen0409/react-chrome-extension-boilerplate.svg?branch=master)](https://travis-ci.org/jhen0409/react-chrome-extension-boilerplate)
-[![Build status: Windows](https://ci.appveyor.com/api/projects/status/b5xy6ev6oykth0d2/branch/master?svg=true)](https://ci.appveyor.com/project/jhen0409/react-chrome-extension-boilerplate/branch/master)
-[![NPM version](http://img.shields.io/npm/v/react-chrome-extension-boilerplate.svg?style=flat)](https://www.npmjs.com/package/react-chrome-extension-boilerplate)
-[![Dependency Status](https://david-dm.org/jhen0409/react-chrome-extension-boilerplate.svg)](https://david-dm.org/jhen0409/react-chrome-extension-boilerplate)
-[![devDependency Status](https://david-dm.org/jhen0409/react-chrome-extension-boilerplate/dev-status.svg)](https://david-dm.org/jhen0409/react-chrome-extension-boilerplate#info=devDependencies)
-
-> Boilerplate for Chrome Extension React.js project.
+# React Chrome Extension
 
 ## Features
 
@@ -14,38 +6,6 @@
  - Hot reloading React/Redux (Using [Webpack](https://github.com/webpack/webpack) and [React Transform](https://github.com/gaearon/react-transform))
  - Write code with ES2015+ syntax (Using [Babel](https://github.com/babel/babel))
  - E2E tests of Window & Popup & Inject pages (Using [Chrome Driver](https://www.npmjs.com/package/chromedriver), [Selenium Webdriver](https://www.npmjs.com/package/selenium-webdriver))
-
-## Examples
-
-The example is edited from [Redux](https://github.com/rackt/redux) TodoMVC example.
-
-#### Popup
-
-![Popup]
-
-The `todos` state will be saved to `chrome.storage.local`.
-
-#### Window
-
-![Window]
-
-The context menu is created by [chrome/extension/background/contextMenus.js](chrome/extension/background/contextMenus.js).
-
-#### Inject page
-
-The inject script is being run by [chrome/extension/background/inject.js](chrome/extension/background/inject.js). A simple example will be inject bottom of page(`https://github.com/*`) if you visit.
-
-If you are receiving the error message `Failed to load resource: net::ERR_INSECURE_RESPONSE`, you need to allow invalid certificates for resources loaded from localhost. You can do this by visiting the following URL: `chrome://flags/#allow-insecure-localhost` and enabling **Allow invalid certificates for resources loaded from localhost**.
-
-## Installation
-
-```bash
-# clone it
-$ git clone https://github.com/jhen0409/react-chrome-extension-boilerplate.git
-
-# Install dependencies
-$ npm install
-```
 
 ## Development
 
@@ -60,7 +20,7 @@ $ npm run dev
 
 #### React/Redux hot reload
 
-This boilerplate uses `Webpack` and `react-transform`, and use `Redux`. You can hot reload by editing related files of Popup & Window & Inject page.
+This extension uses `Webpack` and `react-transform`, and use `Redux`. You can hot reload by editing related files of Popup & Window & Inject page.
 
 #### Using Redux DevTools Extension
 
@@ -90,8 +50,6 @@ If you want to build `crx` file (auto update), please provide options, and add `
   you can use `npm run compress-keygen` to generate private key `./key.pem`
 * --codebase: your `crx` file url
 
-See [autoupdate guide](https://developer.chrome.com/extensions/autoupdate) for more information.
-
 ## Test
 
 * `test/app`: React components, Redux actions & reducers tests
@@ -107,8 +65,3 @@ $ npm test -- --watch  # watch files
 $ npm run build
 $ npm run test-e2e
 ```
-
-## LICENSE
-
-[MIT](LICENSE)
-# React-Chrome-Extension
