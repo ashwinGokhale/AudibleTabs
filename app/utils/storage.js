@@ -2,7 +2,7 @@ function saveState(state) {
   chrome.storage.local.set({ state: JSON.stringify(state) });
 }
 
-// todos unmarked count
+// tabs unmarked count
 function setBadge(tabs) {
   if (chrome.browserAction) {
     const count = tabs.length;

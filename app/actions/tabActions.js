@@ -8,7 +8,7 @@ export const removeTab = (id) => {
   return { type: types.CLOSE_TAB, id}
 }
 
-export const muteTab = (id) => {
+export const quiteTab = (id) => {
   return { type: types.MUTE_TAB, id}
 }
 
@@ -26,8 +26,17 @@ export const fetchTabs = () => {
 export const closeTab = (id) => {
   return dispatch => {
     chrome.tabs.remove(parseInt(id), () => {
-      console.log('Removing: ', id);
-      dispatch(removeTab({id: id}));
+      dispatch(removeTab(id));
+    });
+  }
+}
+
+export const muteTab = (id) => {
+  return dispatch => {
+    chrome.tabs.get(parseInt(id), (tab) => {
+      chrome.tabs.update(tab.id, {muted: !tab.mutedInfo.muted}, () => {
+        dispatch(quiteTab(id));
+      });
     });
   }
 }
@@ -35,14 +44,14 @@ export const closeTab = (id) => {
 export const highlightTab = (id) => {
   return dispatch => {
     chrome.tabs.highlight({'tabs': parseInt(id)}, () => {
-      dispatch(setTab({id: id}));
+      dispatch(setTab(parseInt(id)));
     });
   }
 }
 
 export const getAllTabs = () => {
   return new Promise((resolve, reject) => {
-      chrome.tabs.query({/*audible: true*/}, function(tabs) {
+      chrome.tabs.query({audible: true}, function(tabs) {
           resolve(tabs);
       });
   });

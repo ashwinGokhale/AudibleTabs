@@ -3,10 +3,10 @@ doctype html
 html
   head
     meta(charset='UTF-8')
-    title Redux TodoMVC Example (Inject)
+    title Audible Tabs (Inject)
 
   body
     #root
     if env !== 'prod'
       script(src='chrome-extension://lmhkpmbekcpmknklioeibfkpmmfibljd/js/redux-devtools-extension.js')
-    script(src=env == 'prod' ? '/js/todoapp.bundle.js' : 'https://localhost:3000/js/todoapp.bundle.js')
+    script(src=env == 'prod' ? '/js/tabapp.bundle.js' : 'https://localhost:3000/js/tabapp.bundle.js')

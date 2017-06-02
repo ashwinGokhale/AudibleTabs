@@ -7,25 +7,26 @@ import '../styles/TabContent.css';
 class TabContent extends Component {
     constructor(props, context) {
         super(props, context);
-        this.handleMute.bind(this);
-        this.handleClose.bind(this);
-        this.handleHighlight.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.fetchTabs();
     }
 
     handleMute = (e) => {
         e.preventDefault();
-        chrome.tabs.get(parseInt(e.target.id), (tab) => {
-            chrome.tabs.update(tab.id, {muted: !tab.mutedInfo.muted});
-        });
+        // chrome.tabs.get(parseInt(e.target.id), (tab) => {
+        //     chrome.tabs.update(tab.id, {muted: !tab.mutedInfo.muted});
+        // });
+        this.props.muteTab(e.target.id);
     }
 
     handleClose = (e) => {
         e.preventDefault();
-        chrome.tabs.remove(parseInt(e.target.id), () => {
-            this.props.fetchTabs();
-        });
-        //this.props.closeTab(e.target.id);
-        //this.props.fetchTabs();
+        // chrome.tabs.remove(parseInt(e.target.id), () => {
+        //     this.props.fetchTabs();
+        // });
+        this.props.closeTab(e.target.id);
     }
 
     handleHighlight = (e) => {
@@ -71,6 +72,7 @@ class TabContent extends Component {
 
 TabContent.propTypes = {
     tabs: React.PropTypes.array.isRequired,
+    fetchTabs: React.PropTypes.func.isRequired,
     closeTab: React.PropTypes.func.isRequired,
     muteTab: React.PropTypes.func.isRequired,
     highlightTab: React.PropTypes.func.isRequired
