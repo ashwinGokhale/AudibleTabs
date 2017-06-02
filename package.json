@@ -1,23 +1,23 @@
 {
-  "name": "react-chrome-extension-boilerplate",
-  "version": "0.9.0",
-  "description": "Boilerplate for Chrome extension React.js project",
+  "name": "audible-tabs",
+  "version": "0.0.3",
+  "description": "Manage all of your audible tabs",
   "scripts": {
     "dev": "node scripts/dev",
     "build": "node scripts/build",
     "compress": "node scripts/compress",
     "compress-keygen": "crx keygen",
     "clean": "rimraf build/ dev/ *.zip *.crx",
-    "lint": "eslint app chrome test scripts webpack/*.js",
-    "test-e2e": "cross-env NODE_ENV=test mocha -r ./test/setup-app test/e2e",
-    "test": "cross-env NODE_ENV=test mocha -r ./test/setup-app test/app"
+    "lint": "eslint app chrome test scripts webpack/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jhen0409/react-chrome-extension-boilerplate.git"
+    "url": "https://github.com/ashwinGokhale/React-Chrome-Extension.git"
   },
   "keywords": [
     "chrome",
+    "audible",
+    "tabs",
     "extension",
     "react",
     "redux",
@@ -25,7 +25,7 @@
     "webpack",
     "boilerplate"
   ],
-  "author": "Jhen <developer@jhen.me>",
+  "author": "Ashwin Gokhale",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.24.1",

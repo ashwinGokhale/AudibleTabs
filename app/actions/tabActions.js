@@ -26,7 +26,7 @@ export const fetchTabs = () => {
 export const closeTab = (id) => {
   return dispatch => {
     chrome.tabs.remove(parseInt(id), () => {
-      dispatch(removeTab(id));
+      dispatch({ type: types.CLOSE_TAB, id});
     });
   }
 }
@@ -35,7 +35,7 @@ export const muteTab = (id) => {
   return dispatch => {
     chrome.tabs.get(parseInt(id), (tab) => {
       chrome.tabs.update(tab.id, {muted: !tab.mutedInfo.muted}, () => {
-        dispatch(quiteTab(id));
+        dispatch({ type: types.MUTE_TAB, id})
       });
     });
   }

@@ -10,10 +10,10 @@ export default function tabs(state = [], action = {}) {
       return state.filter(tab => tab.id !== parseInt(action.id));
     
     case types.HIGHLIGHT_TAB:
-      return action.tabs;
+      return state;
     
     case types.MUTE_TAB:
-      return action.tabs;
+      return state;
   
     default:
       return state;

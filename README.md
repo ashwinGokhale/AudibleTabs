@@ -2,10 +2,10 @@
 
 ## Features
 
- - Simple [React](https://github.com/facebook/react)/[Redux](https://github.com/rackt/redux) examples of Chrome Extension Window & Popup & Inject pages
+ - **Used the following:**
+ - [React](https://github.com/facebook/react)/[Redux](https://github.com/rackt/redux)
  - Hot reloading React/Redux (Using [Webpack](https://github.com/webpack/webpack) and [React Transform](https://github.com/gaearon/react-transform))
- - Write code with ES2015+ syntax (Using [Babel](https://github.com/babel/babel))
- - E2E tests of Window & Popup & Inject pages (Using [Chrome Driver](https://www.npmjs.com/package/chromedriver), [Selenium Webdriver](https://www.npmjs.com/package/selenium-webdriver))
+ - [Babel](https://github.com/babel/babel))
 
 ## Development
 
@@ -43,25 +43,20 @@ $ npm run compress -- [options]
 
 #### Options
 
-If you want to build `crx` file (auto update), please provide options, and add `update.xml` file url in [manifest.json](https://developer.chrome.com/extensions/autoupdate#update_url manifest.json).
+If you want to build `crx` file (auto update), please provide options, and add `update.xml` file url in 
+[manifest.json](https://developer.chrome.com/extensions/autoupdate#update_url/manifest.json)
 
 * --app-id: your extension id (can be get it when you first release extension)
 * --key: your private key path (default: './key.pem')  
   you can use `npm run compress-keygen` to generate private key `./key.pem`
 * --codebase: your `crx` file url
 
-## Test
-
-* `test/app`: React components, Redux actions & reducers tests
-* `test/e2e`: E2E tests (use [chromedriver](https://www.npmjs.com/package/chromedriver), [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver))
+## Lint
 
 ```bash
 # lint
 $ npm run lint
-# test/app
-$ npm test
-$ npm test -- --watch  # watch files
-# test/e2e
-$ npm run build
-$ npm run test-e2e
 ```
+  
+### Made using the React Chrome Extension Boileplate
+[Github Repo](https://github.com/jhen0409/react-chrome-extension-boilerplate)

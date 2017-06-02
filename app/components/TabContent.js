@@ -7,6 +7,9 @@ import '../styles/TabContent.css';
 class TabContent extends Component {
     constructor(props, context) {
         super(props, context);
+        chrome.tabs.onUpdated.addListener(() => this.props.fetchTabs());
+        chrome.tabs.onRemoved.addListener(() => this.props.fetchTabs());
+        chrome.tabs.onCreated.addListener(() => this.props.fetchTabs());
     }
 
     componentDidMount() {
@@ -15,23 +18,16 @@ class TabContent extends Component {
 
     handleMute = (e) => {
         e.preventDefault();
-        // chrome.tabs.get(parseInt(e.target.id), (tab) => {
-        //     chrome.tabs.update(tab.id, {muted: !tab.mutedInfo.muted});
-        // });
         this.props.muteTab(e.target.id);
     }
 
     handleClose = (e) => {
         e.preventDefault();
-        // chrome.tabs.remove(parseInt(e.target.id), () => {
-        //     this.props.fetchTabs();
-        // });
         this.props.closeTab(e.target.id);
     }
 
     handleHighlight = (e) => {
         e.preventDefault();
-        //chrome.tabs.highlight({'tabs': parseInt(e.target.id)}, () => {});
         this.props.highlightTab(e.target.id);
     }
 

@@ -3,9 +3,9 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import storage from '../utils/storage';
 
-const middlewares = applyMiddleware(thunk);
+
 const enhancer = compose(
-  middlewares,
+  applyMiddleware(thunk),
   storage()
 );
 

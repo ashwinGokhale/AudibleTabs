@@ -4,6 +4,7 @@ import TabContent from './TabContent'
 import Shortcuts from './Shortcuts';
 
 export default class Navigation extends Component {
+
     render() {
         return(
         	<div>
