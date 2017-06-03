@@ -47,7 +47,7 @@ class TabContent extends Component {
                             (<tr key={i}>
                                 <td><Button onClick={this.handleClose} bsStyle="primary" id={tab.id}>Close</Button></td>
                                 <td><Button onClick={this.handleMute} bsStyle="primary" id={tab.id}>Mute</Button></td>
-                                <td><a onClick={this.handleHighlight} id={tab.index}>{tab.title}</a></td>
+                                <td className="tab"><a onClick={this.handleHighlight} id={tab.index}>{tab.title}</a></td>
                             </tr>)    
                         )}
                     </tbody>

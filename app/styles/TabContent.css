@@ -2,3 +2,6 @@ td button{
   display:table-cell;
   margin: auto;
 }
+.tab {
+  width: 100%
+}
