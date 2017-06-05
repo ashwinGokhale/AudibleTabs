@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Tab, Tabs } from 'react-bootstrap';
 import TabContent from './TabContent'
 import Shortcuts from './Shortcuts';
-import Blacklist from './Blacklist';
+import Blacklist from './blacklistComponents/Blacklist';
 
 export default class Navigation extends Component {
 

@@ -35,7 +35,7 @@ export const highlightTab = (id) => {
 
 export const getAllTabs = () => {
   return new Promise((resolve, reject) => {
-      chrome.tabs.query({audible: true}, function(tabs) {
+      chrome.tabs.query({audible: true}, (tabs) => {
           resolve(tabs);
       });
   });

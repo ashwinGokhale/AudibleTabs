@@ -12,24 +12,13 @@ class TabContent extends Component {
         chrome.tabs.onCreated.addListener(() => this.props.fetchTabs());
     }
 
-    componentDidMount() {
-        this.props.fetchTabs();
-    }
+    componentDidMount() { this.props.fetchTabs(); }
 
-    handleMute = (e) => {
-        e.preventDefault();
-        this.props.muteTab(e.target.id);
-    }
+    handleMute = (e) => { this.props.muteTab(e.target.id); }
 
-    handleClose = (e) => {
-        e.preventDefault();
-        this.props.closeTab(e.target.id);
-    }
+    handleClose = (e) => { this.props.closeTab(e.target.id); }
 
-    handleHighlight = (e) => {
-        e.preventDefault();
-        this.props.highlightTab(e.target.id);
-    }
+    handleHighlight = (e) => { this.props.highlightTab(e.target.id); }
 
     renderTable(){
         return(
@@ -57,7 +46,6 @@ class TabContent extends Component {
     }
 
     render() {
-
         return(
             <div id="tabs" className="tab-pane fade in active">
                 {this.props.tabs.length ? this.renderTable() : <h4>There are currently no tabs playing audio</h4>}

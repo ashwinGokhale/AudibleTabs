@@ -20,11 +20,19 @@ a {
 
 #status {
 	font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	margin-top: 10px;
 	float: left;
 	color: #ac2925;
 }
 
 .page {
 	width: 100%
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
 }

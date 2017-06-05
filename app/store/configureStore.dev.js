@@ -2,7 +2,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger'
-import rootReducer from '../reducers/index';
+import rootReducer from '../reducers';
 import storage from '../utils/storage';
 
 // If Redux DevTools Extension is installed use it, otherwise use Redux compose
