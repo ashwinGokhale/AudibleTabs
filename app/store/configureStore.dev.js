@@ -5,26 +5,10 @@ import logger from 'redux-logger'
 import rootReducer from '../reducers';
 import storage from '../utils/storage';
 
-// If Redux DevTools Extension is installed use it, otherwise use Redux compose
-/* eslint-disable no-underscore-dangle */
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-//   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-//     // Options: http://zalmoxisus.github.io/redux-devtools-extension/API/Arguments.html
-//   }) :
-//   compose;
-/* eslint-enable no-underscore-dangle */
-
-// const enhancer = composeEnhancers(
-//   applyMiddleware(thunk, logger),
-//   storage(),
-// );
-
 const enhancer = composeWithDevTools(
   applyMiddleware(thunk, logger),
   storage(),
 );
-
-
 
 export default function (initialState) {
   const store = createStore(rootReducer, initialState, enhancer);

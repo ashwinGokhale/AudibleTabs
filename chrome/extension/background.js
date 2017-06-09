@@ -28,5 +28,5 @@ promisifyAll(chrome.storage, [
   'local',
 ]);
 
-require('./background/tabs');
+require('./background/BGActions');
 require('./background/badge');

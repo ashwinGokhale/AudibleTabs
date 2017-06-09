@@ -1,12 +1,17 @@
-h3 {
-    align-content: center;
+h4 {
+    margin-bottom: 5px !important;
+}
+
+kbd {
+    font-size: 12px;
 }
 
 Table {
     width: 100%;
+    border-collapse: collapse;
 }
 
-.left {
+/*.left {
     text-align: left;
     font-size: 25px;
 }
@@ -14,4 +19,4 @@ Table {
 .right {
     text-align: center;
     font-size: 25px;
-}
+}*/

@@ -1,21 +1,25 @@
-.bottomBar{
+.bottom-bar{
   display: flex;
   justify-content: space-between;
   text-align: justify;
-}
-
-button,
-input[type="checkbox"] {
-  outline: none;
 }
 
 a {
 	cursor: pointer;
 }
 
+.block {
+  width: 100%
+}
+
+.uk-table {
+	margin-bottom: 10px !important;
+}
+
 #clear {
 	float: right;
 	font-size: 12px;
+	margin-bottom: 10px;
 }
 
 #status {
@@ -26,13 +30,4 @@ a {
 
 .page {
 	width: 100%
-}
-
-.example-appear {
-  opacity: 0.01;
-}
-
-.example-appear.example-appear-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
 }
