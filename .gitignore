@@ -2,7 +2,10 @@ node_modules
 npm-debug.log
 .DS_Store
 .idea
+.vscode
 archive
+dev
+build
 
 *.crx
 *.pem
