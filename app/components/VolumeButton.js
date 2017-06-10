@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 export default class VolumeButton extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {muted: false};
+		this.state = {muted: this.props.muted};
 	}
 
 	handleVolume = (e) => {

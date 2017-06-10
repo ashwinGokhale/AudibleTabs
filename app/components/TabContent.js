@@ -43,6 +43,7 @@ class TabContent extends Component {
                                 <td>
                                     <VolumeButton
                                         id={tab.id}
+                                        muted={tab.mutedInfo.muted}
                                         handleMute={this.handleMute}
                                     />
                                 </td>
