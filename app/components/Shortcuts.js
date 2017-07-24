@@ -20,8 +20,6 @@ export default class Shortcuts extends Component {
                                 <td><h6><kbd>Ctrl+Shift+S</kbd> : Show audible tabs</h6></td>
                                 <td><h6><kbd>Ctrl+Shift+C</kbd> : Close all audible tabs</h6></td>
                             </tr>
-
-
                             <tr>
                                 <td><h6><kbd>Ctrl+Shift+M</kbd> : Mute current tab  </h6></td>
                                 <td><h6><kbd>Ctrl+Shift+A</kbd> : Mute all audible tabs</h6></td>

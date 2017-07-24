@@ -1,4 +1,5 @@
 h4 {
+    padding-left: 10px;
     margin-bottom: 5px !important;
 }
 
@@ -10,13 +11,3 @@ Table {
     width: 100%;
     border-collapse: collapse;
 }
-
-/*.left {
-    text-align: left;
-    font-size: 25px;
-}
-
-.right {
-    text-align: center;
-    font-size: 25px;
-}*/
