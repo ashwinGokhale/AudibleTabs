@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { fetchTabs, closeTab, muteTab, highlightTab } from '../actions/tabActions'
+import { fetchTabs, closeTab, muteTab, highlightTab } from '../actions/tabActions';
+import FontAwesome from 'react-fontawesome';
+import VolumeButton from './VolumeButton';
+import PropTypes from 'prop-types';
 import '../styles/TabContent.css';
 
 class TabContent extends Component {
@@ -22,26 +25,35 @@ class TabContent extends Component {
 
     renderTable(){
         return(
-            <section id="whole-audible-table">
-                <Table hover>
-                    <thead>
-                    <tr>
-                        <th>Close</th>
-                        <th>Mute</th>
-                        <th>Tab</th>
-                    </tr>
-                    </thead>
-                    <tbody id="audible-table">
-                        {this.props.tabs.map((tab, i) => 
-                            (<tr key={i}>
-                                <td><Button onClick={this.handleClose} bsStyle="primary" id={tab.id}>Close</Button></td>
-                                <td><Button onClick={this.handleMute} bsStyle="primary" id={tab.id}>Mute</Button></td>
+            <table className="uk-table uk-table-striped uk-box-shadow-small">
+                <tbody id="audible-table">
+                    {this.props.tabs.map((tab, i) => 
+                        (
+                            <tr key={i}>
+                                <td>
+                                    <button
+                                        className="uk-button"
+                                        id={tab.id}
+                                        title="Close"
+                                        onClick={this.handleClose}
+                                        ref={c => this.closeButton = c}>
+                                        <FontAwesome id={tab.id} name='trash-o' style={{color:'#337ab7'}} size='2x'/>
+                                    </button>
+                                </td>
+                                <td>
+                                    <VolumeButton
+                                        id={tab.id}
+                                        muted={tab.mutedInfo.muted}
+                                        handleMute={this.handleMute}
+                                    />
+                                </td>
                                 <td className="tab"><a onClick={this.handleHighlight} id={tab.index}>{tab.title}</a></td>
-                            </tr>)    
-                        )}
-                    </tbody>
-                </Table>
-            </section>
+                            </tr>
+                        )    
+                    )}
+                </tbody>
+                
+            </table>
         );
     }
 
@@ -55,11 +67,11 @@ class TabContent extends Component {
 }
 
 TabContent.propTypes = {
-    tabs: React.PropTypes.array.isRequired,
-    fetchTabs: React.PropTypes.func.isRequired,
-    closeTab: React.PropTypes.func.isRequired,
-    muteTab: React.PropTypes.func.isRequired,
-    highlightTab: React.PropTypes.func.isRequired
+    tabs: PropTypes.array.isRequired,
+    fetchTabs: PropTypes.func.isRequired,
+    closeTab: PropTypes.func.isRequired,
+    muteTab: PropTypes.func.isRequired,
+    highlightTab: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {

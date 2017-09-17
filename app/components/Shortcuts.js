@@ -4,26 +4,25 @@
 
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-//import '../styles/Shortcuts.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import '../styles/Shortcuts.css'
 
 export default class Shortcuts extends Component {
 
     render() {
         return (
             <div id="shortcuts">
-                <h3 >Suggested Shortcuts</h3>
+                <h4>Suggested Shortcuts</h4>
                 <div className="shortcuts">
                     <Table >
                         <tbody>
-                            <tr>
-                                <td className="left"><h5><kbd>Ctrl+Shift+S</kbd> : Show audible tabs</h5></td>
-                                <td className="right"><h5><kbd>Ctrl+Shift+C</kbd> : Close all audible tabs</h5></td>
+                            <tr className="uk-card">
+                                <td><h6><kbd>Ctrl+Shift+S</kbd> : Show audible tabs</h6></td>
+                                <td><h6><kbd>Ctrl+Shift+C</kbd> : Close all audible tabs</h6></td>
                             </tr>
-
-
                             <tr>
-                                <td className="left"><h5><kbd>Ctrl+Shift+M</kbd> : Mute current tab  </h5></td>
-                                <td className="right"><h5><kbd>Ctrl+Shift+A</kbd> : Mute all audible tabs</h5></td>
+                                <td><h6><kbd>Ctrl+Shift+M</kbd> : Mute current tab  </h6></td>
+                                <td><h6><kbd>Ctrl+Shift+A</kbd> : Mute all audible tabs</h6></td>
                             </tr>
                         </tbody>
                     </Table>

@@ -1,3 +1,5 @@
+import {getBlacklist}  from '../../../app/actions/blacklistActions'
+
 // Handle all commands
 chrome.commands.onCommand.addListener( (command) => {
 	switch (command) {
@@ -36,11 +38,30 @@ chrome.commands.onCommand.addListener( (command) => {
 });
 
 // Update badge icon when popup is not active
+chrome.windows.onCreated.addListener(() => chrome.tabs.query({audible: true}, (tabs) => setBadge(tabs)));
 chrome.tabs.onUpdated.addListener(() => chrome.tabs.query({audible: true}, (tabs) => setBadge(tabs)));
 chrome.tabs.onRemoved.addListener(() => chrome.tabs.query({audible: true}, (tabs) => setBadge(tabs)));
 chrome.tabs.onCreated.addListener(() => chrome.tabs.query({audible: true}, (tabs) => setBadge(tabs)));
 
-function setBadge(tabs) {
+// Mute tabs on the blacklist
+chrome.tabs.onCreated.addListener(() => chrome.tabs.query({}, (tabs) => updateBlacklist(tabs)));
+chrome.tabs.onUpdated.addListener(() => chrome.tabs.query({}, (tabs) => updateBlacklist(tabs)));
+chrome.tabs.onRemoved.addListener(() => chrome.tabs.query({}, (tabs) => updateBlacklist(tabs)));
+
+const updateBlacklist = (tabs) => {
+	getBlacklist()
+	.then((blacklist) => {
+		blacklist.forEach((item) => {
+			tabs.forEach((tab) => {
+				if (tab.url === item.url) {
+					chrome.tabs.update(tab.id, {muted: true});
+				}
+			})
+		})
+	})
+}
+
+const setBadge = (tabs) => {
   if (chrome.browserAction) {
     const count = tabs.length;
     chrome.browserAction.setBadgeText({ text: count > 0 ? count.toString() : '' });

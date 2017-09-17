@@ -1,10 +1,7 @@
 .App-logo {
-  width: 40px; 
-  height: 40px; 
-  float: left; 
-  vertical-align: middle; 
-  margin-right: 10px; 
-  margin-top: 0px;
+  width: 30px; 
+  height: 30px;
+  margin-left: 20px;
 }
 
 .container {
@@ -12,3 +9,11 @@
   background-color: rgb(255, 255, 253);
 }
 
+.uk-tab {
+  margin-bottom: 0;
+}
+
+td {
+  padding-top: 10px !important;
+  padding-bottom: 5px !important;
+}

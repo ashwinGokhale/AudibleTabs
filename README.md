@@ -5,7 +5,7 @@
  - **Used the following:**
  - [React](https://github.com/facebook/react)/[Redux](https://github.com/rackt/redux)
  - Hot reloading React/Redux (Using [Webpack](https://github.com/webpack/webpack) and [React Transform](https://github.com/gaearon/react-transform))
- - [Babel](https://github.com/babel/babel))
+ - [Babel](https://github.com/babel/babel)
 
 ## Development
 

@@ -1,5 +1,5 @@
 {
-  "version": "0.3",
+  "version": "0.4.1",
   "name": "Audible Tabs",
   "manifest_version": 2,
   "description": "Manage all of your audible tabs",
@@ -50,5 +50,5 @@
 	  	}
 	},
   "permissions": [ "contextMenus", "background", "tabs", "storage", "https://github.com/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+  "content_security_policy": "default-src 'self'; font-src *; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
 }

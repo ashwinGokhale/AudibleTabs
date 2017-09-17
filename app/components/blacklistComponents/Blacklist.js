@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { Table, Button, Collapse } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { fetchBlacklist, addBlacklist, removeBlacklist } from '../../actions/blacklistActions';
-import BlacklistRow from './BlacklistRow';
+import { fetchBlacklist, addBlacklist, removeBlacklist, clearBlacklist, updateBlacklist } from '../../actions/blacklistActions';
+import PropTypes from 'prop-types';
+import BlacklistAdd from './BlacklistAdd';
+import BlacklistEdit from './BlacklistEdit';
 import '../../styles/Blacklist.css';
 
 class Blacklist extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
-			open: false,
-			status: 'Status'
+			status: ''
 		};
+		chrome.storage.onChanged.addListener(() => 	this.props.fetchBlacklist());
 	}
 
 	componentDidMount() {
@@ -19,62 +21,71 @@ class Blacklist extends Component {
 	}
 
 	updateStatus = (msg) => {
-		this.setState({status: msg})
+		this.setState({status: msg});
+		setTimeout(() => this.setState({status: ''}), 3000);
+	}
+
+	handleClear = () => {
+		this.props.clearBlacklist();
+		this.updateStatus('Items Cleared');
 	}
 
 	addItem = (item) => {
-		chrome.tabs.query({audible: true}, (tabs) => {
-			tabs.forEach((tab) => {
-				if (tab.url == item.url) {
-					chrome.tabs.update(tab.id, {muted: true}, () => {
-						this.props.addBlacklist(item);
-						this.setState({open: false});
-					});	
-				}
-			});
-		});
+		this.props.addBlacklist(item);
+		this.updateStatus('Item Added');
 	}
 
-	render(){
+	updateItem = (item) => {
+		this.props.updateBlacklist(item);
+		this.updateStatus('Item updated');
+	}
+
+	deleteItem = (item) => {
+		this.props.removeBlacklist(item);
+		this.updateStatus('Item Deleted');
+	}
+
+	renderItems = () => {
+		return this.props.blacklist.map((item) =>{
+			return <BlacklistEdit
+				key={item._id} 
+				item={item}
+				updateStatus={this.updateStatus} 
+				updateItem={this.updateItem}
+				deleteItem={this.deleteItem}
+			/>})
+	}
+
+	render(){	
+		
 		return (
 			<div id="blacklist" className="tab-pane fade in">
-				<section>
-					<Table hover>
-						<thead>
-							<tr>
-								<th>Add</th>
-								<th>Delete</th>
-								<th>Page<Button bsStyle="primary" bsSize="xsmall" id="clear" >Clear</Button></th>
-							</tr>
-						</thead>
-						<tbody >
-							{this.props.blacklist.map((item, i) => 
-								<BlacklistRow 
-									key={i} 
-									item={item}
-									updateStatus={this.updateStatus} 
-									addItem={this.addItem}
-								/>)}
-							<BlacklistRow 
-								updateStatus={this.updateStatus} 
-								addItem={this.addItem}
-							/>
-						</tbody>
-					</Table>
-					<div>
-						<label id="status">{this.state.status}</label>
-					</div>
-				</section>
+				<table className="uk-table uk-table-striped uk-box-shadow-small">	
+					<tbody >
+						<BlacklistAdd
+							updateStatus={this.updateStatus} 
+							addItem={this.addItem}
+							deleteItem={this.deleteItem}
+						/>
+						{this.renderItems()}
+					</tbody>
+				</table>
+				<div className="bottom-bar">
+					<label id="status">{this.state.status}</label>
+					<Button bsStyle="primary" bsSize="xsmall" id="clear" onClick={this.handleClear}>Clear</Button>
+				</div>
 			</div>
 		)
 	}
 }
 
 Blacklist.propTypes = {
-	blacklist: React.PropTypes.array.isRequired,
-	fetchBlacklist: React.PropTypes.func.isRequired,
-	addBlacklist: React.PropTypes.func.isRequired,
-	removeBlacklist: React.PropTypes.func.isRequired
+	blacklist: PropTypes.array.isRequired,
+	fetchBlacklist: PropTypes.func.isRequired,
+	addBlacklist: PropTypes.func.isRequired,
+	removeBlacklist: PropTypes.func.isRequired,
+	updateBlacklist: PropTypes.func.isRequired,
+	clearBlacklist: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -82,4 +93,4 @@ const mapStateToProps = (state, ownProps) => {
 		blacklist: state.blacklist
 	}
 }
-export default connect(mapStateToProps, { fetchBlacklist, addBlacklist, removeBlacklist })(Blacklist);
+export default connect(mapStateToProps, { fetchBlacklist, addBlacklist, removeBlacklist, updateBlacklist, clearBlacklist })(Blacklist);
