@@ -80,21 +80,21 @@ const baseDevConfig = () => ({
   }
 });
 
-const injectPageConfig = baseDevConfig();
-injectPageConfig.entry = [
-  customPath,
-  path.join(__dirname, '../chrome/extension/inject')
-];
-delete injectPageConfig.hotMiddleware;
-delete injectPageConfig.module.loaders[0].query;
-injectPageConfig.plugins.shift(); 
-injectPageConfig.output = {
-  path: path.join(__dirname, '../dev/js'),
-  filename: 'inject.bundle.js',
-};
+// const injectPageConfig = baseDevConfig();
+// injectPageConfig.entry = [
+//   customPath,
+//   path.join(__dirname, '../chrome/extension/inject')
+// ];
+// delete injectPageConfig.hotMiddleware;
+// delete injectPageConfig.module.loaders[0].query;
+// injectPageConfig.plugins.shift(); 
+// injectPageConfig.output = {
+//   path: path.join(__dirname, '../dev/js'),
+//   filename: 'inject.bundle.js',
+// };
 const appConfig = baseDevConfig();
 
 module.exports = [
-  injectPageConfig,
+  // injectPageConfig,
   appConfig
 ];
