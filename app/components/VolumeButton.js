@@ -4,14 +4,13 @@ import FontAwesome from 'react-fontawesome';
 export default class VolumeButton extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {muted: this.props.muted};
+		this.state = { muted: this.props.muted };
 	}
 
-	handleVolume = (e) => {
-		this.setState({muted: !this.state.muted});
+	handleVolume = e => {
+		this.setState({ muted: !this.state.muted });
 		this.props.handleMute(e);
-	}
-	
+	};
 
 	render() {
 		return (
@@ -20,9 +19,14 @@ export default class VolumeButton extends Component {
 				id={this.props.id}
 				title="Close"
 				onClick={this.handleVolume}
-				ref={c => this.closeButton = c}
+				ref={c => (this.closeButton = c)}
 			>
-				<FontAwesome id={this.props.id} name={this.state.muted ? 'volume-off': 'volume-up'} style={{color:'#337ab7'}} size='2x'/>
+				<FontAwesome
+					id={this.props.id}
+					name={this.state.muted ? 'volume-off' : 'volume-up'}
+					style={{ color: '#337ab7' }}
+					size="2x"
+				/>
 			</button>
 		);
 	}

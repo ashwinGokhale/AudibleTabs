@@ -3,12 +3,11 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import storage from '../utils/storage';
 
-
 const enhancer = compose(
-  applyMiddleware(thunk),
-  storage()
+	applyMiddleware(thunk),
+	storage()
 );
 
-export default function (initialState) {
-  return createStore(rootReducer, initialState, enhancer);
+export default function(initialState) {
+	return createStore(rootReducer, initialState, enhancer);
 }

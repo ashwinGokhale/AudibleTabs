@@ -1,6 +1,6 @@
 const tasks = require('./tasks');
+const { exec } = require('shelljs');
 
-tasks.replaceWebpack();
 console.log('[Copy assets]');
 console.log('-'.repeat(80));
 tasks.copyAssets('build');

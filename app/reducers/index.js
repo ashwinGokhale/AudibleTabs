@@ -3,6 +3,6 @@ import tabs from './tabs';
 import blacklist from './blacklist';
 
 export default combineReducers({
-  tabs,
-  blacklist
+	tabs,
+	blacklist
 });
