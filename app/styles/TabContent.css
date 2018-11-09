@@ -1,7 +1,7 @@
-td button{
-  display:table-cell;
-  margin: auto;
+td button {
+	display: table-cell;
+	margin: auto;
 }
 .tab {
-  width: 100%
+	width: 100%;
 }

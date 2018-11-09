@@ -1,19 +1,19 @@
 .App-logo {
-  width: 30px; 
-  height: 30px;
-  margin-left: 20px;
+  /* width: 30px;  */
+  /* height: 30px; */
+  /* margin-left: 20px; */
 }
 
 .container {
-  max-width: 590px;
-  background-color: rgb(255, 255, 253);
+	max-width: 590px;
+	background-color: rgb(255, 255, 253);
 }
 
 .uk-tab {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 td {
-  padding-top: 10px !important;
-  padding-bottom: 5px !important;
+	padding-top: 10px !important;
+	padding-bottom: 5px !important;
 }
